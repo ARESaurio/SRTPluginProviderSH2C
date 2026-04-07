@@ -4,5 +4,6 @@
     {
         Unknown,
         sh2pc,
+        sh2pcEE,
     }
 }

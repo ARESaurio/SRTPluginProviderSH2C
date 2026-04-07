@@ -84,6 +84,7 @@ namespace SRTPluginProviderSH2C
         {
             switch (version)
             {
+                case GameVersion.sh2pcEE:
                 case GameVersion.sh2pc:
                 {
                     // ── Player ───────────────────────────────────────────────

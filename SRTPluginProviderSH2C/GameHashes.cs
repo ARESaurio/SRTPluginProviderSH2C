@@ -17,6 +17,17 @@ namespace SRTPluginProviderSH2C
             0xCE, 0x02, 0xB6, 0x4A, 0xA6, 0x4A, 0xB7, 0xF3
         };
 
+        // SHA256 hash of sh2pc.exe (Silent Hill 2 Enhanced Edition)
+        // Hash: F31A221779FADCA4DAE8FE758546ECDE8B88A88FA6E80FAD7DEE115D2EF620E8
+        private static readonly byte[] sh2pcEE = new byte[32]
+        {
+            0xF3, 0x1A, 0x22, 0x17, 0x79, 0xFA, 0xDC, 0xA4,
+            0xDA, 0xE8, 0xFE, 0x75, 0x85, 0x46, 0xEC, 0xDE,
+            0x8B, 0x88, 0xA8, 0x8F, 0xA6, 0xE8, 0x0F, 0xAD,
+            0x7D, 0xEE, 0x11, 0x5D, 0x2E, 0xF6, 0x20, 0xE8
+        };
+
+
         public static GameVersion DetectVersion(string filePath)
         {
             byte[] checksum;
@@ -26,6 +37,8 @@ namespace SRTPluginProviderSH2C
 
             if (checksum.SequenceEqual(sh2pc))
                 return GameVersion.sh2pc;
+            if (checksum.SequenceEqual(sh2pcEE))
+                return GameVersion.sh2pcEE;
             else
                 return GameVersion.Unknown;
         }

@@ -76,7 +76,7 @@ namespace SRTPluginProviderSH2C
         public string   IGTFormattedString => IGTTimeSpan.ToString(IGT_TIMESPAN_STRING_FORMAT, CultureInfo.InvariantCulture);
 
         public TimeSpan BoatTimeSpan       => TimeSpan.FromSeconds(BoatTime);
-        public string   BoatTimeFormatted  => string.Format("{0:D2}:{1:D2}", (int)BoatTimeSpan.TotalMinutes, BoatTimeSpan.Seconds);
+        public string   BoatTimeFormatted  => string.Format("{0:D2}:{1:D2}.{2:D3}", (int)BoatTimeSpan.TotalMinutes, BoatTimeSpan.Seconds, BoatTimeSpan.Milliseconds);
 
         public string ActionDifficultyString => ActionDifficulty switch
         {
