@@ -10,8 +10,8 @@
     <Copyright>Copyright © 2026 $(Company)</Copyright>
     <Product>Silent Hill 2 Classic Memory Provider Plugin</Product>
     <Description>A provider plugin for the SRT Host to provide memory values to other plugins.</Description>
-    <Version>1.0.1.0</Version>
-    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.2.0</Version>
+    <FileVersion>1.0.2.0</FileVersion>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <DebugType>embedded</DebugType>
 	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
