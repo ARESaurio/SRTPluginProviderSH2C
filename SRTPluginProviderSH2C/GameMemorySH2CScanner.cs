@@ -24,6 +24,7 @@ namespace SRTPluginProviderSH2C
         // Silent_Hill_2_No_Hit_Tool by Ares & Miguel_mm_95.
         private ulong AddressPlayerHP;
         private ulong AddressIGT;
+        private ulong AddressFPS;
         private ulong AddressHandgun;
         private ulong AddressHandgunBullets;
         private ulong AddressShotgun;
@@ -93,6 +94,9 @@ namespace SRTPluginProviderSH2C
                     // ── In-Game Time ──────────────────────────────────────────
                     AddressIGT               = 0x19BBF94;
 
+                    // ── Frame Rate ────────────────────────────────────────────
+                    AddressFPS               = 0x633364;
+
                     // ── Weapons & Ammo ────────────────────────────────────────
                     AddressHandgun           = 0x1B7A7F4;
                     AddressHandgunBullets    = 0x1B7A7F6;
@@ -131,6 +135,9 @@ namespace SRTPluginProviderSH2C
 
             // ── In-Game Time ──────────────────────────────────────────────────
             gameMemoryValues._igt = memoryAccess.GetAt<float>((void*)(BaseAddress + AddressIGT));
+
+            // ── Frame Rate ────────────────────────────────────────────────────
+            gameMemoryValues._fps = memoryAccess.GetAt<float>((void*)(BaseAddress + AddressFPS));
 
             // ── Weapons & Ammo ────────────────────────────────────────────────
             gameMemoryValues._handgunCount    = memoryAccess.GetAt<short>((void*)(BaseAddress + AddressHandgun));

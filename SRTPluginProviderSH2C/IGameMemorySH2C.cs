@@ -17,6 +17,9 @@ namespace SRTPluginProviderSH2C
         TimeSpan IGTTimeSpan      { get; }
         string  IGTFormattedString { get; }
 
+        // Frame Rate (FPS)
+        float FPS { get; }
+
         // Weapons & Ammo
         short HandgunCount    { get; }
         short HandgunBullets  { get; }
