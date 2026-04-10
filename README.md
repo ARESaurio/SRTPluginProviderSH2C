@@ -6,12 +6,13 @@
 
 ## Silent Hill 2 Classic (2001) — SRT Memory Provider Plugin
 
-A game memory provider plugin for **SRTHost** that reads in-game data from the classic PC version of Silent Hill 2 (2001).
+A game memory provider plugin for **SRTHost** that reads in-game data from **Silent Hill 2 Classic (2001)** and **Silent Hill 2 Enhanced Edition**.
 
 ### Features
 
 - 🩸 **James HP** — current health value and status (Fine / Caution / Danger / Dead)
 - ⏱️ **IGT** — in-game timer (formatted as `hh:mm:ss`)
+- 🖥️ **FPS** — current frames per second
 - 🔫 **Weapons & Ammo** — Handgun, Shotgun, and Rifle counts and bullet counts
 - 📊 **Run Stats** — saves, items collected, enemies defeated by shooting/fighting, total damage received
 - 🚤 **Boat Stage Time**
@@ -21,7 +22,7 @@ A game memory provider plugin for **SRTHost** that reads in-game data from the c
 
 Planned features for future versions:
 
-- [ ] **Enhanced Edition support** — read memory from the 2012 HD / Enhanced Edition (64-bit)
+- [x] **Enhanced Edition support** — fully supported, same memory addresses as Classic
 - [ ] **Enemy health tracking** — read HP of active enemies in the current room
 - [ ] **Born from a Wish support** — memory reading for the extra scenario (Maria's campaign)
 
