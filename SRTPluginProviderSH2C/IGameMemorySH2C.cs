@@ -8,6 +8,7 @@ namespace SRTPluginProviderSH2C
     {
         string GameName    { get; }
         string VersionInfo { get; }
+        bool IsBfaW        { get; }
 
         // Player
         GamePlayer Player  { get; }

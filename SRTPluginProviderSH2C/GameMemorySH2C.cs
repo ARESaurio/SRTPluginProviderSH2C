@@ -22,6 +22,10 @@ namespace SRTPluginProviderSH2C
         public float IGT { get => _igt; }
         internal float _igt;
 
+        // ── Scenario ─────────────────────────────────────────────────────
+        public bool IsBfaW { get => _isBfaW; }
+        internal bool _isBfaW;
+
         // ── Frame Rate ───────────────────────────────────────────────────────
         public float FPS { get => _fps; }
         internal float _fps;

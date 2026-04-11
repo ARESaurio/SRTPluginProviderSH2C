@@ -15,15 +15,8 @@ namespace SRTPluginProviderSH2C
 
         public IPluginInfo Info => new PluginInfo();
 
-        public bool GameRunning
-        {
-            get
-            {
-                try { return process != null && !process.HasExited; }
-                catch { return false; }
-            }
-        }
-
+        public bool GameRunning => true;
+ 
         public int Startup(IPluginHostDelegates hostDelegates)
         {
             this.hostDelegates = hostDelegates;
@@ -46,8 +39,8 @@ namespace SRTPluginProviderSH2C
         {
             try
             {
-                // If the game process disappeared, try to find it again.
-                if (!GameRunning)
+                // Re-initialize whenever the scanner is not reading.
+                if (!gameMemoryScanner.ProcessRunning)
                 {
                     process = GetProcess();
                     if (process != null)

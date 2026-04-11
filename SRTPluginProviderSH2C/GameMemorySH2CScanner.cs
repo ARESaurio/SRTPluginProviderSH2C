@@ -40,6 +40,8 @@ namespace SRTPluginProviderSH2C
         private ulong AddressActionDifficulty;
         private ulong AddressRiddleDifficulty;
         private ulong AddressNPCs;
+        private ulong AddressMariaHP;
+        private ulong AddressRevolver;
 
         private nuint BaseAddress { get; set; }
 
@@ -74,6 +76,8 @@ namespace SRTPluginProviderSH2C
                 return; // Unknown version — bail out.
 
             uint pid = GetProcessId(process).Value;
+            memoryAccess?.Dispose();
+            memoryAccess = null;
             memoryAccess = new ProcessMemoryHandler(pid);
             if (ProcessRunning)
                 BaseAddress = baseAddr != 0
@@ -121,6 +125,9 @@ namespace SRTPluginProviderSH2C
                     // NOTE: NPC list address needs verification via Cheat Engine.
                     AddressNPCs              = 0x58A114;
 
+                    // ── Born form a Wish ──────────────────────────────────────
+                    AddressMariaHP      = 0x1BB1144;
+                    AddressRevolver     = 0x1B7A800;
                     return true;
                 }
             }
@@ -130,6 +137,12 @@ namespace SRTPluginProviderSH2C
 
         internal IGameMemorySH2C Refresh()
         {
+            // ── Scenario Detection ────────────────────────────────────────────
+            byte scenarioFlag = memoryAccess.GetByteAt((void*)0x1A58F1UL);
+            float possibleMariaHP = memoryAccess.GetAt<float>((void*)(BaseAddress + AddressMariaHP));
+            bool isBfaW = scenarioFlag == 1 && possibleMariaHP > 0f && possibleMariaHP <= 160f;
+            gameMemoryValues._isBfaW = isBfaW;
+
             // ── Player HP ─────────────────────────────────────────────────────
             gameMemoryValues._player = memoryAccess.GetAt<GamePlayer>((void*)(BaseAddress + AddressPlayerHP));
 
@@ -140,12 +153,24 @@ namespace SRTPluginProviderSH2C
             gameMemoryValues._fps = memoryAccess.GetAt<float>((void*)(BaseAddress + AddressFPS));
 
             // ── Weapons & Ammo ────────────────────────────────────────────────
+            if (isBfaW)
+            {
+                gameMemoryValues._handgunCount   = memoryAccess.GetAt<short>((void*)(BaseAddress + AddressRevolver));
+                gameMemoryValues._handgunBullets = 0;
+                gameMemoryValues._shotgunCount   = 0;
+                gameMemoryValues._shotgunBullets = 0;
+                gameMemoryValues._rifleCount     = 0;
+                gameMemoryValues._rifleBullets   = 0;
+            }
+            else
+            {
             gameMemoryValues._handgunCount    = memoryAccess.GetAt<short>((void*)(BaseAddress + AddressHandgun));
             gameMemoryValues._handgunBullets  = memoryAccess.GetAt<short>((void*)(BaseAddress + AddressHandgunBullets));
             gameMemoryValues._shotgunCount    = memoryAccess.GetAt<short>((void*)(BaseAddress + AddressShotgun));
             gameMemoryValues._shotgunBullets  = memoryAccess.GetAt<short>((void*)(BaseAddress + AddressShotgunBullets));
             gameMemoryValues._rifleCount      = memoryAccess.GetAt<short>((void*)(BaseAddress + AddressRifle));
             gameMemoryValues._rifleBullets    = memoryAccess.GetAt<short>((void*)(BaseAddress + AddressRifleBullets));
+            }
 
             // ── Run Stats ─────────────────────────────────────────────────────
             gameMemoryValues._saveCount      = memoryAccess.GetByteAt((void*)(BaseAddress + AddressSaves));
