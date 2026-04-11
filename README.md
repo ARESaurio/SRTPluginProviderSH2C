@@ -15,16 +15,16 @@ A game memory provider plugin for **SRTHost** that reads in-game data from **Sil
 - 🖥️ **FPS** — current frames per second
 - 🔫 **Weapons & Ammo** — Handgun, Shotgun, and Rifle counts and bullet counts
 - 📊 **Run Stats** — saves, items collected, enemies defeated by shooting/fighting, total damage received
-- 🚤 **Boat Stage Time**
+- 🚤 **Boat Stage Time** — (formatted as `mm:ss`)
 - 🎮 **Difficulty** — Action Level and Riddle Level (shown as name: Beginner / Easy / Normal / Hard)
-
+- 🔄 **Auto Refresh** — Automatically Refresh the plugin even if the game is closed (Not necessary to restart the plugin).
 ### Roadmap
 
 Planned features for future versions:
 
 - [x] **Enhanced Edition support** — fully supported, same memory addresses as Classic
 - [ ] **Enemy health tracking** — read HP of active enemies in the current room
-- [ ] **Born from a Wish support** — memory reading for the extra scenario (Maria's campaign)
+- [x] **Born from a Wish support** — memory reading for the extra scenario (Maria's campaign)
 
 ### Requirements
 
